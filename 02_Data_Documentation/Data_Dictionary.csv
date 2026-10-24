@@ -1,0 +1,17 @@
+dataset,field,type,unit,description,status
+Synthetic_Panel.csv,household,string,,synthetic household ID S0000-S0299,generated
+Synthetic_Panel.csv,type,string,,appliance archetype: fan / cooler / ac,generated
+Synthetic_Panel.csv,month,string,,calendar month label Jan..Dec,generated
+Synthetic_Panel.csv,days,int,days,calendar-month length,generated
+Synthetic_Panel.csv,kwh,float,kWh,energy in the calendar month (unequal lengths),generated
+Synthetic_Panel.csv,kwh30,float,kWh,energy in a 30-day billing cycle (primary analysis),generated
+Household_Penalties.csv,V,float,Rs,annual volatility penalty under reported UP FY2019-20 schedule,generated
+Household_Penalties.csv,V_share_pct,float,%,V / annual energy charge x 100,generated
+Household_Penalties.csv,V_K150/V_K300/V_K500,float,Rs,threshold decomposition terms,generated
+Household_Penalties.csv,U_*,float,Rs,bounds: sd mad scarf bp finite finite_nonneg best exact,generated
+observed panel (planned),household,string,,salted hash of meter ID,not generated
+observed panel (planned),district,string,,Mathura or Bareilly,not generated
+observed panel (planned),ym,period,,year-month,not generated
+observed panel (planned),kwh,float,kWh,calendar-month energy (scaled if partial),not generated
+observed panel (planned),completeness,float,share,valid days / days in month,not generated
+source dataset fields,UNKNOWN,,,column names and units not verified (dataset unreachable),not inspected

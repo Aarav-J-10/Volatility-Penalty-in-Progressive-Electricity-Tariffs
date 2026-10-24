@@ -1,0 +1,308 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage[margin=2.5cm]{geometry}
+\usepackage{amsmath,amssymb,amsthm,mathtools}
+\usepackage{booktabs}
+
+
+\usepackage{hyperref}
+\hypersetup{colorlinks=true,linkcolor=black,citecolor=black,urlcolor=blue}
+\newtheorem{theorem}{Theorem}
+\newtheorem{proposition}{Proposition}
+\newtheorem{lemma}{Lemma}
+\newtheorem{corollary}{Corollary}
+\newtheorem{conjecture}{Conjecture}
+\theoremstyle{definition}
+\newtheorem{definition}{Definition}
+\theoremstyle{plain}\newtheorem{sprop}{Proposition}[section]\newtheorem{slemma}[sprop]{Lemma}\newtheorem{scor}[sprop]{Corollary}
+\theoremstyle{definition}
+\newtheorem{example}{Example}
+\theoremstyle{remark}
+\newtheorem{remark}{Remark}
+\newcommand{\xbar}{\bar{x}}
+\newcommand{\pos}[1]{\left(#1\right)_{+}}
+\numberwithin{equation}{section}
+\renewcommand{\thesection}{S\arabic{section}}
+\title{Supplementary Mathematical Appendix\\[4pt]
+\large The Volatility Penalty in Progressive Electricity Tariffs:\\ Sharp Finite-Sample Bounds and Constrained Tariff Design}
+\author{Supplement to the IJSSER manuscript}
+\date{Version of 24 October 2026}
+\begin{document}
+\maketitle
+
+\noindent\textbf{Numbering.} Propositions 1--4, Theorems 1--3 and Corollary 1 carry the same numbers as in the manuscript; results numbered S$k$.$j$ appear only in this supplement.\par\medskip\noindent\textbf{Status of results.} Results labelled \emph{known} are classical and are credited to their sources. Results labelled \emph{proved here} have complete proofs below; to the best of a limited literature search they are not stated in this form elsewhere, but no priority claim is made. Items labelled \emph{conjecture} are supported numerically only. Population moments (divisor $n$) are used throughout; Remark~\ref{rem:sample} discusses the sample standard deviation.
+
+\tableofcontents
+
+%=====================================================================
+\section{Definitions, notation and assumptions}\label{sec:S1}
+
+\begin{definition}[Marginal-block tariff]
+For thresholds $0<K_1<\dots<K_m$ and marginal prices $p_0,\dots,p_m\in\mathbb R$, with increments $\Delta p_j=p_j-p_{j-1}$, the energy charge for consumption $x\ge0$ in a reference period of 30 days is
+\begin{equation}\label{eq:tariff}
+B(x)=p_0x+\sum_{j=1}^m\Delta p_j\pos{x-K_j},\qquad \pos{z}=\max(z,0).
+\end{equation}
+The tariff is \emph{progressive} (convex) if $\Delta p_j\ge0$ for all $j$. Writing $c_0=0$ and $c_k=\sum_{j\le k}\Delta p_jK_j$, on block $k$ (i.e.\ $K_k\le x\le K_{k+1}$, with $K_0=0,\ K_{m+1}=\infty$) we have $B(x)=p_kx-c_k$, and if the tariff is convex then
+\begin{equation}\label{eq:maxaffine}
+B(x)=\max_{0\le k\le m}\,(p_kx-c_k)\qquad\text{for all }x\ge0 .
+\end{equation}
+\end{definition}
+
+\noindent\emph{Proof of \eqref{eq:maxaffine}.} The function $\ell_k(x)=p_kx-c_k$ satisfies $\ell_k(x)-\ell_{k-1}(x)=\Delta p_k(x-K_k)$, which is $\ge0$ iff $x\ge K_k$ when $\Delta p_k>0$. Hence for $x$ in block $k$, $\ell_k(x)\ge\ell_{k-1}(x)\ge\dots\ge\ell_0(x)$ and $\ell_k(x)\ge\ell_{k+1}(x)\ge\dots\ge\ell_m(x)$. If some $\Delta p_k=0$ the corresponding pieces coincide. \qed
+
+\begin{definition}[Volatility penalty]
+For $x=(x_1,\dots,x_n)$ in $n$ comparable periods, $\xbar=\frac1n\sum_tx_t$,
+\[
+V(x)=\sum_{t=1}^nB(x_t)-nB(\xbar),\qquad W_K(x)=\sum_{t=1}^n\pos{x_t-K}-n\pos{\xbar-K}.
+\]
+Write $s^2=\frac1n\sum_t(x_t-\xbar)^2$, $\mathrm{MAD}=\frac1n\sum_t|x_t-\xbar|$, $d=\xbar-K$ and $d_j=\xbar-K_j$.
+\end{definition}
+
+\noindent\textbf{Assumptions.} (A1) Telescopic (marginal-block) billing. (A2) Fixed charges independent of consumption; they cancel from $V$. (A3) Consumption is held fixed (no behavioural response). (A4) Thresholds refer to a 30-day period; for other lengths they are prorated (Section~\ref{sec:S2}). (A5) The comparator $nB(\xbar)$ is hypothetical.
+
+\begin{remark}[All-units tariffs]
+An all-units (non-telescopic) schedule $B^{\mathrm{AU}}(x)=p_{k(x)}x$ is discontinuous and not convex; none of the results below apply (Section~\ref{sec:S10}).
+\end{remark}
+
+%=====================================================================
+\section{Non-negativity, decomposition and unequal periods}\label{sec:S2}
+
+\setcounter{proposition}{0}\begin{proposition}[Decomposition and non-negativity; Jensen~\cite{jensen}]\label{prop:nonneg}
+(i) $V(x)=\sum_{j=1}^m\Delta p_j\,W_{K_j}(x)$. (ii) $W_K(x)\ge0$ for all $x,K$. (iii) $V(x)\ge0$ for every $n\ge1$ and every $x\in[0,\infty)^n$ if and only if $\Delta p_j\ge0$ for all $j$. (iv) $W_K(x)=0$ iff there are no $t,u$ with $x_t<K<x_u$.
+\end{proposition}
+\begin{proof}
+(i) The linear term contributes $p_0\sum_tx_t-np_0\xbar=0$. (ii) $z\mapsto\pos{z-K}$ is convex; apply Jensen's inequality to the uniform distribution on $\{x_t\}$. (iii) Sufficiency follows from (i),(ii). For necessity suppose $\Delta p_i<0$. Choose $0<\varepsilon<\min\{K_i,\ \min_{j\ne i}|K_j-K_i|\}$ and $x=(K_i-\varepsilon,K_i+\varepsilon)$. For $j\ne i$ both points lie on the same side of $K_j$, so $W_{K_j}(x)=0$ by (iv); and $W_{K_i}(x)=\varepsilon-0=\varepsilon$. Hence $V(x)=\Delta p_i\varepsilon<0$. (iv) follows from Proposition~\ref{prop:ident}(b): if $\xbar\ge K$ then $W_K=\sum_t\pos{K-x_t}$, which vanishes iff all $x_t\ge K$; if $\xbar<K$ then $W_K=\sum_t\pos{x_t-K}$, which vanishes iff all $x_t\le K$. In both cases this is equivalent to the absence of a strict straddle.
+\end{proof}
+
+\begin{sprop}[Unequal period lengths]\label{prop:perspective}
+Let period $t$ have length $L_t>0$ days and define the prorated charge $B_L(x)=\frac{L}{30}B\!\left(\frac{30x}{L}\right)$ (thresholds scale by $L/30$). If $B$ is convex then
+\[
+V_L(x)=\sum_tB_{L_t}(x_t)-B_{\sum_tL_t}\Big(\sum_tx_t\Big)\ \ge\ 0 .
+\]
+\end{sprop}
+\begin{proof}
+$g(x,L)=LB(x/L)$ is the perspective of a convex function, hence jointly convex on $L>0$, and it is positively homogeneous of degree one~\cite{boyd}. For such $g$, $g(u+v)=2g\big(\tfrac{u+v}{2}\big)\le g(u)+g(v)$, so $g$ is subadditive; induction gives $\sum_tg(x_t,L_t)\ge g(\sum_tx_t,\sum_tL_t)$. Scaling by $1/30$ gives the claim. With equal $L_t$ the inequality reduces to $V\ge0$.
+\end{proof}
+
+\begin{remark}
+Using unprorated monthly thresholds with calendar months of different lengths is \emph{not} the same comparison; in the synthetic panel it raised the mean penalty from Rs~109.3 to Rs~114.0.
+\end{remark}
+
+%=====================================================================
+\section{Exact absolute-deviation and minority-side representations}\label{sec:S3}
+
+\setcounter{proposition}{1}\begin{proposition}[Exact identities]\label{prop:ident}
+For every $x\in\mathbb R^n$ and $K\in\mathbb R$:
+\begin{align}
+\text{(a)}\quad & W_K(x)=\tfrac12\Big[\sum_t|x_t-K|-n|\xbar-K|\Big];\label{eq:abs}\\
+\text{(b)}\quad & W_K(x)=\begin{cases}\sum_t\pos{K-x_t}, & \xbar\ge K,\\ \sum_t\pos{x_t-K}, & \xbar\le K.\end{cases}\label{eq:minority}
+\end{align}
+In particular, for a two-tier tariff $V=\frac{\Delta p}{2}\big[\sum_t|x_t-K|-n|\xbar-K|\big]$.
+\end{proposition}
+\begin{proof}
+(a) Substitute $\pos z=\frac12(z+|z|)$ in both terms of $W_K$; the linear parts give $\frac12[\sum_t(x_t-K)-n(\xbar-K)]=0$. (b) If $\xbar\le K$, the second term of $W_K$ is zero. If $\xbar\ge K$, $W_K=\sum_t[\pos{x_t-K}-(x_t-K)]=\sum_t\pos{K-x_t}$ because $\pos z-z=\pos{-z}$. At $\xbar=K$ both forms agree since $\sum_t(x_t-K)=0$.
+\end{proof}
+
+\begin{slemma}[Reflection invariance]\label{cor:reflect}
+$W_K(x)=W_K(2K-x)$, where $(2K-x)_t=2K-x_t$. Hence results proved for $\xbar\ge K$ transfer to $\xbar\le K$.
+\end{slemma}
+\begin{proof}
+Each term of \eqref{eq:abs} is invariant under $x_t\mapsto2K-x_t$.
+\end{proof}
+
+\noindent\textbf{Numerical verification.} The identities were checked on $3{,}000$ random vectors (gamma, discrete, Pareto and constant draws, $1\le n\le 29$) to absolute error below $10^{-7}$ (\texttt{test\_theory.py}), and against an independent slab-by-slab bill calculator for every synthetic household.
+
+%=====================================================================
+\section{Moment bounds}\label{sec:S4}
+
+\setcounter{proposition}{2}\begin{proposition}[MAD, Scarf-type and SD bounds; known]\label{prop:moment}
+For every $x\in\mathbb R^n$,
+\[
+W_K(x)\ \le\ \frac n2\min\Big\{\mathrm{MAD},\ \sqrt{s^2+d^2}-|d|\Big\}\ \le\ \frac n2\,s .
+\]
+\end{proposition}
+\begin{proof}
+By the triangle inequality $|x_t-K|\le|x_t-\xbar|+|d|$, so \eqref{eq:abs} gives $W_K\le\frac n2\mathrm{MAD}$. By Cauchy--Schwarz, $\frac1n\sum_t|x_t-K|\le\big(\frac1n\sum_t(x_t-K)^2\big)^{1/2}=\sqrt{s^2+d^2}$, giving the second term. Finally $\mathrm{MAD}\le s$ (Cauchy--Schwarz) and $\sqrt{s^2+d^2}\le s+|d|$.
+\end{proof}
+
+\noindent The second term, divided by $n$, is $\sup\{\mathbb E\pos{X-K}-\pos{\mathbb EX-K}\}$ over all laws with mean $\xbar$ and variance $s^2$: Scarf's inventory bound~\cite{scarf}, Lo's option bound~\cite{lo}, see also~\cite{gallego}. With support $[0,\infty)$ the sharp distributional bound is~\cite{lo,bertsimas}
+\[
+\sup_{X\ge0}\mathbb E\pos{X-K}=\begin{cases}\xbar-K\dfrac{\xbar^2}{\xbar^2+s^2}, & K\le \dfrac{\xbar^2+s^2}{2\xbar},\\[8pt] \tfrac12\big[(\xbar-K)+\sqrt{s^2+(\xbar-K)^2}\big], & \text{otherwise}.\end{cases}
+\]
+
+\begin{sprop}[Equality cases]\label{prop:eq}
+(i) $W_K=\frac n2 s$ iff $K=\xbar$, $n$ is even and exactly half the $x_t$ equal $\xbar+s$ and half equal $\xbar-s$ (or $s=0$).
+(ii) $W_K=\frac n2\mathrm{MAD}$ iff $K=\xbar$ or $s=0$ (Proposition~\ref{prop:threshold}).
+(iii) For fixed $n$, the Scarf-type term is attained by some $x\in\mathbb R^n$ with the given $(\xbar,s)$ iff either $s=0$ or $n p^\ast\in\{1,\dots,n-1\}$, where $p^\ast=\frac12\big(1-|d|/\sqrt{s^2+d^2}\big)$.
+\end{sprop}
+\begin{proof}
+(i) Equality in $W_K\le\frac n2\mathrm{MAD}\le\frac n2 s$ requires $\mathrm{MAD}=s$, i.e.\ all $|x_t-\xbar|$ equal to $s$, and $W_K=\frac n2\mathrm{MAD}$, i.e.\ $K=\xbar$ when $s>0$ (Proposition~\ref{prop:threshold}). A zero-mean deviation vector with entries $\pm s$ has equally many of each sign. (ii) is Proposition~\ref{prop:threshold}. (iii) By Theorem~\ref{thm:finite} the maximum over $n$-vectors is $\max_jA_j$. Write $A_j=n f(j/n)$ with $f(p)=s\sqrt{p(1-p)}-p|d|$, which is strictly concave on $(0,1)$ when $s>0$ and has unique maximiser $p^\ast$ with $f(p^\ast)=\frac12(\sqrt{s^2+d^2}-|d|)$; substituting $p=\frac{1-u}{2}$ gives $f'(p)=0\iff u/\sqrt{1-u^2}=|d|/s$. Hence $\max_jA_j=nf(p^\ast)$ iff $p^\ast\in\{1/n,\dots,(n-1)/n\}$.
+\end{proof}
+
+\begin{example}
+$n=3$, $\xbar=280$, $s=120$, $K=150$: the Scarf-type bound is $70.38$\,kWh but $\max_jA_j=A_1=39.71$\,kWh, attained by $x=(110.29,\,364.85,\,364.85)$.
+\end{example}
+
+%=====================================================================
+\section{Finite-sample sharp bound (Theorem 1)}\label{sec:S5}
+
+\begin{theorem}[Proved here]\label{thm:finite}
+Let $n\ge2$, $\xbar\in\mathbb R$, $s\ge0$, $K\in\mathbb R$ and $A_j=s\sqrt{j(n-j)}-j|\xbar-K|$. For every $x\in\mathbb R^n$ with mean $\xbar$ and population standard deviation $s$,
+\[
+W_K(x)\ \le\ U^{\mathrm{fin}}:=\max\Big\{0,\max_{1\le j\le n-1}A_j\Big\},
+\]
+and the bound is attained.
+\end{theorem}
+\begin{proof}
+By Corollary~\ref{cor:reflect} assume $d=\xbar-K\ge0$. Let $J=\{t:x_t<K\}$ and $j=|J|$. If $j=0$ then $W_K=0$ by \eqref{eq:minority}. Since $\xbar\ge K$, $j\le n-1$. By \eqref{eq:minority}, $D:=W_K=\sum_{t\in J}(K-x_t)>0$. Since $\sum_t(x_t-K)=nd$, the complementary group has total excess $E=\sum_{t\notin J}(x_t-K)=D+nd\ge0$. Cauchy--Schwarz within each group gives
+\[
+n(s^2+d^2)=\sum_t(x_t-K)^2\ \ge\ \frac{D^2}{j}+\frac{(D+nd)^2}{n-j}=:h(D).
+\]
+The function $h$ is strictly increasing on $[0,\infty)$. Multiplying $h(D)=n(s^2+d^2)$ by $j(n-j)/n$ gives $D^2+2jdD+jnd^2-j(n-j)(s^2+d^2)=0$, whose nonnegative root is
+\[
+D_j=-jd+\sqrt{j^2d^2-jnd^2+j(n-j)(s^2+d^2)}=-jd+s\sqrt{j(n-j)}=A_j ,
+\]
+since $j^2-jn+j(n-j)=0$. Hence $W_K=D\le A_j\le\max_jA_j$.
+
+\emph{Attainment.} If $\max_jA_j\le0$, any $x$ with the given moments has $W_K=0$ (the argument above shows $D\le A_j\le0$ is impossible for $D>0$), and the bound $0$ is attained. Otherwise let $j^\ast$ maximise $A_j$ and set $x_t=K-A_{j^\ast}/j^\ast$ for $t\le j^\ast$ and $x_t=K+(A_{j^\ast}+nd)/(n-j^\ast)$ for $t>j^\ast$. Then $\sum_t(x_t-K)=nd$ and $\sum_t(x_t-K)^2=h(A_{j^\ast})=n(s^2+d^2)$, so the mean is $\xbar$ and the standard deviation is $s$; the first $j^\ast$ points lie strictly below $K$ and the rest weakly above, so $W_K(x)=A_{j^\ast}$ by \eqref{eq:minority}.
+\end{proof}
+
+\setcounter{corollary}{0}\begin{corollary}[Zero-penalty certificate; Samuelson~\cite{samuelson}]\label{cor:zero}
+If $|\xbar-K|\ge s\sqrt{n-1}$ then $W_K(x)=0$ for every $x$ with these moments.
+\end{corollary}
+\begin{proof}
+$A_j/j=s\sqrt{(n-j)/j}-|d|$ is strictly decreasing in $j$ when $s>0$, so $\max_jA_j\le0$ iff $A_1\le0$ iff $|d|\ge s\sqrt{n-1}$. (Equivalently, no single observation can lie more than $s\sqrt{n-1}$ from the mean.)
+\end{proof}
+
+\begin{scor}
+$U^{\mathrm{fin}}\le\frac n2(\sqrt{s^2+d^2}-|d|)$, with equality characterised in Proposition~\ref{prop:eq}(iii). The Scarf-type bound is positive whenever $s>0$; it therefore never certifies $W_K=0$.
+\end{scor}
+
+\begin{remark}[Sample versus population standard deviation]\label{rem:sample}
+If the sample standard deviation $s'=s\sqrt{n/(n-1)}$ is substituted for $s$, the bounds remain valid (all are nondecreasing in $s$) but are no longer sharp. Mixing conventions inside a proof is an error; the code uses $s$ throughout (\texttt{theory.pop\_sd}).
+\end{remark}
+
+%=====================================================================
+\section{Threshold sensitivity (Proposition 4)}\label{sec:S6}
+
+\setcounter{proposition}{3}\begin{proposition}[Proved here; elementary]\label{prop:threshold}
+Fix $x\in\mathbb R^n$ with $s>0$, and let $m_-=\min_tx_t<\xbar<m_+=\max_tx_t$. Then $K\mapsto W_K(x)$ is continuous and piecewise linear, equals $0$ for $K\le m_-$ and $K\ge m_+$, is strictly increasing on $[m_-,\xbar]$ and strictly decreasing on $[\xbar,m_+]$. Hence $K=\xbar$ is the unique maximiser and $\max_KW_K(x)=\frac n2\mathrm{MAD}$.
+\end{proposition}
+\begin{proof}
+For $K<\xbar$, by \eqref{eq:minority} $W_K=\sum_t\pos{K-x_t}$, whose right and left derivatives are $\#\{t:x_t\le K\}$ and $\#\{t:x_t<K\}$; both are $\ge1$ on $(m_-,\xbar)$ and both are $0$ for $K<m_-$. For $K>\xbar$, $W_K=\sum_t\pos{x_t-K}$, with derivatives $-\#\{t:x_t>K\}$ and $-\#\{t:x_t\ge K\}$, both $\le-1$ on $(\xbar,m_+)$. Continuity at $\xbar$ follows from \eqref{eq:abs}. Finally $W_{\xbar}=\frac12\sum_t|x_t-\xbar|=\frac n2\mathrm{MAD}$.
+\end{proof}
+
+\begin{remark}[Plateaus, kinks and ties]
+$W_K$ has kinks at every distinct $x_t$ and at $\xbar$; it is flat (and zero) only outside $[m_-,m_+]$. There are no ties for the maximiser when $s>0$. If $s=0$, $W_K\equiv0$ and every $K$ is a maximiser. The result fixes $\Delta p$; in a tariff-design problem moving $K$ changes the revenue-neutral prices, so the maximiser of the \emph{monetary} penalty over designs need not be $\xbar$.
+\end{remark}
+
+%=====================================================================
+\section{Non-negative consumption (Theorem 2)}\label{sec:S7}
+
+\begin{theorem}[Validity proved here]\label{thm:nonneg}
+If in addition $x_t\ge0$ for all $t$, then
+\[
+W_K(x)\le\max\Big\{0,\max_{1\le j\le n-1}\min\{A_j,c_j\}\Big\},\qquad c_j=\begin{cases}jK,&\xbar\ge K,\\ n\xbar-jK,&\xbar<K.\end{cases}
+\]
+\end{theorem}
+\begin{proof}
+Case $\xbar\ge K$: with $J$ as in Theorem~\ref{thm:finite}, $W_K=\sum_{t\in J}(K-x_t)\le jK$ because $x_t\ge0$, and $W_K\le A_j$ by Theorem~\ref{thm:finite}. Case $\xbar<K$: let $J^+=\{t:x_t>K\}$ with $|J^+|=j\le n-1$. Then $W_K=\sum_{t\in J^+}(x_t-K)=\sum_{t\in J^+}x_t-jK\le\sum_tx_t-jK=n\xbar-jK$, using $x_t\ge0$ for $t\notin J^+$. Applying Theorem~\ref{thm:finite} to the reflected vector gives $W_K\le A_j$.
+\end{proof}
+
+\begin{conjecture}[Sharpness]\label{conj}
+The bound of Theorem~\ref{thm:nonneg} is attained by some nonnegative $x$ with the given moments whenever such vectors exist (i.e.\ $s\le\xbar\sqrt{n-1}$).
+\end{conjecture}
+\noindent\emph{Evidence.} Multistart SLSQP maximisation of $W_K$ under the moment and nonnegativity constraints matched the bound in all 28 structured cases ($n\in\{3,4,6,12\}$, seven $(\xbar,s,K)$ settings) and in 120 random cases ($2\le n\le6$), with maximum relative gap $8\times10^{-14}$. A proof would have to show that, when $c_{j}$ binds, the remaining variance can always be absorbed by the majority group; we have not completed this argument.
+
+%=====================================================================
+\section{Multi-tier tariffs: decomposition and the joint bound (Theorem 3)}\label{sec:S8}
+
+\begin{theorem}[Proved here]\label{thm:joint}
+Let $B$ be convex with prices $p_0\le\dots\le p_m$ and intercepts $c_k$ as in \eqref{eq:maxaffine}. For a count vector $N=(n_0,\dots,n_m)\in\mathbb Z_{\ge0}^{m+1}$ with $\sum_kn_k=n$, let $\bar p_N=\frac1n\sum_kn_kp_k$ and $\sigma_N^2=\frac1n\sum_kn_k(p_k-\bar p_N)^2$. Then for every $x\in\mathbb R^n$ with mean $\xbar$ and population standard deviation $s$,
+\[
+V(x)\ \le\ U^{\mathrm{joint}}:=\max_{N}\Big[n\xbar\,\bar p_N+ns\,\sigma_N-\sum_kn_kc_k\Big]-nB(\xbar),
+\]
+and the bound is attained (over $\mathbb R^n$). The maximum is over $\binom{n+m}{m}$ count vectors.
+\end{theorem}
+\begin{proof}
+Let $S=\{x\in\mathbb R^n:\sum_tx_t=n\xbar,\ \sum_t(x_t-\xbar)^2=ns^2\}$. Extending \eqref{eq:maxaffine} to all real $x$ by $B(x):=\max_k(p_kx-c_k)$ (which agrees with the tariff on $x\ge0$), for any assignment $\kappa:\{1,\dots,n\}\to\{0,\dots,m\}$,
+\[
+\sum_tB(x_t)=\max_{\kappa}\ \sum_t\big(p_{\kappa(t)}x_t-c_{\kappa(t)}\big).
+\]
+Hence $\sup_{x\in S}\sum_tB(x_t)=\max_\kappa\sup_{x\in S}\sum_t(a_tx_t-c_{\kappa(t)})$ with $a_t=p_{\kappa(t)}$. Writing $x_t=\xbar+y_t$ with $\sum_ty_t=0$, $\sum_ty_t^2=ns^2$, we get $\sum_ta_tx_t=n\xbar\bar a+\sum_t(a_t-\bar a)y_t\le n\xbar\bar a+\|a-\bar a\|\,\sqrt n\,s$ by Cauchy--Schwarz, with equality at $y=\sqrt n\,s\,(a-\bar a)/\|a-\bar a\|$ (or any feasible $y$ if $a$ is constant). Since $\|a-\bar a\|=\sqrt n\,\sigma_N$ and $\bar a=\bar p_N$ depend on $\kappa$ only through the counts $N$, the supremum equals $\max_N[n\xbar\bar p_N+ns\sigma_N-\sum_kn_kc_k]$. Subtracting $nB(\xbar)$ gives the bound; the maximising $y$ and assignment attain it, because $\sum_tB(x_t)$ is at least the value of that assignment and at most the overall supremum.
+\end{proof}
+
+\begin{scor}
+For $m=1$, $U^{\mathrm{joint}}=\Delta p\cdot U^{\mathrm{fin}}$ (Theorem~\ref{thm:finite}); this was also verified numerically on 2{,}000 random instances (maximum difference $1.2\times10^{-11}$).
+\end{scor}
+
+\begin{remark}[Nonnegativity and joint versus componentwise sharpness]
+$U^{\mathrm{joint}}$ is a valid bound for nonnegative consumption; it is sharp under nonnegativity whenever the maximising vector is nonnegative, as in all examples below. By Proposition~\ref{prop:nonneg}(i), $V\le\sum_j\Delta p_j U^{\mathrm{fin}}(K_j)$, but the per-threshold maximisers are different vectors, so the sum is in general \emph{not} attainable: for the reported Uttar Pradesh schedule ($K=150,300,500$; $\Delta p_j=0.5$) with $n=12$, $\xbar=280$, $s=160$, the sum is Rs~806.39 whereas $U^{\mathrm{joint}}=$ Rs~565.10, attained by four readings of 53.73\,kWh and eight of 393.14\,kWh. Multistart optimisation (200 starts) found the same value independently.
+\end{remark}
+
+\noindent\textbf{Componentwise bounds.} Summing Proposition~\ref{prop:moment} over thresholds gives $V\le\frac n2\sum_j\Delta p_j\min\{\mathrm{MAD},\sqrt{s^2+d_j^2}-|d_j|\}$ and $V\le\frac n2(p_m-p_0)\,s$. The MAD version is attained iff every threshold with $\Delta p_j>0$ equals $\xbar$, which is impossible for $m\ge2$ distinct thresholds unless $s=0$.
+
+%=====================================================================
+\section{Constrained tariff design}\label{sec:S9}
+
+Consider two-tier tariffs $\theta=(p_1,\delta,K)$ with $p_2=p_1+\delta$ and households $h=1,\dots,H$ with consumption vectors $x_h\in[0,\infty)^n$. Let $W_h(K)=W_K(x_h)$, $T=\sum_{h,t}x_{ht}$, $G(K)=\sum_{h,t}\pos{x_{ht}-K}$ and $\mathrm{cov}(K)$ the share of household-periods above $K$.
+
+\begin{sprop}\label{prop:lp}
+(i) For fixed $K$, revenue $R=p_1T+\delta G(K)$, the bill at basic consumption $x_b$, $p_1\min(x_b,K)+\delta\pos{x_b-K}$, and every $V_h=\delta W_h(K)$ are linear in $(p_1,\delta)$. Hence for fixed $K$ the problems $\min\ \delta\cdot\phi(K)$ with $\phi\in\{\frac1H\sum_hW_h,\ \max_hW_h,\ \max_hU_h\}$ subject to the constraints of Section~7 of the manuscript are linear programmes in two variables.
+(ii) If the feasible set is nonempty, minimisers exist.
+(iii) For fixed $K$ with $\phi(K)>0$, every optimal solution has the smallest feasible $\delta$; consequently along the frontier $\delta_{\min}\mapsto\min V_{\max}$ at fixed $K$ the penalty is linear in $\delta$.
+(iv) Without the progressivity and coverage constraints the infimum is $0$, attained by $\delta=0$, or by $K\le\min_{h,t}x_{ht}$, or by $K\ge\max_{h,t}x_{ht}$ (Proposition~\ref{prop:nonneg}(iv)).
+\end{sprop}
+\begin{proof}
+(i) is immediate from \eqref{eq:tariff}. (ii) For each fixed $K$ the feasible set in $(p_1,\delta)$ is a compact polygon (bounded prices, linear constraints), so the LP has a minimiser whenever it is feasible. Over a finite grid of $K$ values a global minimiser therefore exists. For continuous $K$, the coverage share is a right-continuous step function of $K$, so the feasible set need not be closed; we do not claim existence over continuous $K$ and report grid-global optima only. (iii) The objective is $\phi(K)\delta$ with $\phi(K)>0$. (iv) follows from $W_h(K)=0$ in those cases.
+\end{proof}
+
+\noindent The computational procedure solves the LP exactly (HiGHS) at each grid value of $K$ (step 1\,kWh), so the reported optima are global \emph{on the grid}; continuous optimality in $K$ is not certified.
+
+%=====================================================================
+\section{Extremal configurations and edge cases}\label{sec:S10}
+
+\begin{itemize}
+\item $n=1$: $V=0$; the bounds are defined as $0$.
+\item Constant consumption ($s=0$): $V=0$; all bounds equal $0$.
+\item All readings on a threshold: $V=0$ (Proposition~\ref{prop:nonneg}(iv)).
+\item Readings $K\pm\varepsilon$ in equal numbers: $V=\frac n2\Delta p\,\varepsilon$, which attains the SD, MAD, Scarf and finite-sample bounds simultaneously.
+\item Zero readings: genuine zero consumption is admissible and is retained; zeros arising from outages must be treated as missing (data protocol), otherwise $s$ and $V$ are inflated.
+\item Extremal two-point vectors (Theorem~\ref{thm:finite}) may require negative consumption when $A_{j^\ast}/j^\ast>K$ and $\xbar\ge K$; Theorem~\ref{thm:nonneg} then gives the relevant bound.
+\end{itemize}
+
+%=====================================================================
+\section{Counterexamples to invalid generalisations}\label{sec:S11}
+
+\begin{enumerate}
+\item \textbf{All-units slabs.} $B^{\mathrm{AU}}(x)=5.5x$ for $x\le150$, $6.0x$ for $x>150$; $x=(140,166)$: $\sum_tB^{\mathrm{AU}}(x_t)=770+996=1766<2\times6.0\times153=1836$, so $V=-70$.
+\item \textbf{Decreasing blocks.} $p=(6,5)$, $K=150$, $x=(100,200)$: $V=-50<0$.
+\item \textbf{Summing sharp bounds.} Section~\ref{sec:S8}: Rs~806.39 versus the attainable Rs~565.10.
+\item \textbf{Scarf sharp for fixed $n$.} Section~\ref{sec:S4} example: 70.38 versus 39.71.
+\item \textbf{Longer billing periods always reduce the penalty.} Merging \emph{nested} periods cannot increase $V$: if bimonthly periods are unions of monthly periods, Jensen's inequality applied within each pair gives $V_{\text{bimonthly}}\le V_{\text{monthly}}$ (with thresholds scaled as $B_2(E)=2B(E/2)$). Non-nested schemes are not ordered: in the synthetic panel 70 of 300 households had $V_{\text{quarterly}}>V_{\text{bimonthly}}$ (e.g.\ readings $186.9,156.0,242.8,394.7,435.3,514.5,513.6,396.7,404.7,252.8,175.5,235.0$: Rs~275.53 quarterly versus Rs~223.32 bimonthly), while $V_{\text{quarterly}}\le V_{\text{monthly}}$ held for all, as nesting implies.
+\item \textbf{The penalty maximiser over designs is $\xbar$.} False once prices adjust to keep revenue fixed (Remark in Section~\ref{sec:S6}).
+\item \textbf{Variance alone determines the penalty.} Two vectors with identical $(\xbar,s)$ can have $V=0$ and $V>0$: e.g.\ $K=150$: $x=(160,160,160,280)$ and $x'=(100,220,220,220)$ both have $\xbar=190$ and $s=\sqrt{2700}\approx51.96$, but $W_K(x)=0$ while $W_K(x')=50$ (and $x'$ attains Theorem~\ref{thm:finite}).
+\end{enumerate}
+
+%=====================================================================
+\section{Numerical validation}\label{sec:S12}
+
+The archive's \texttt{04\_Tests} directory contains 26 executed \texttt{pytest} tests (all passing; log in \texttt{05\_Computational\_Results/Execution\_Log.txt}): hand-computed bills (420\,kWh $\Rightarrow$ Rs~2{,}505), equality between the hinge and slab-by-slab implementations on 500 random values, identities and bound orderings on 3{,}000 random vectors, attainment of Theorems~\ref{thm:finite} and \ref{thm:joint}, the Samuelson certificate, threshold maximiser, decomposition, non-convex counterexample, unequal-period non-negativity, data-pipeline rules, optimisation feasibility and determinism. \texttt{validate.py} independently recomputes every household penalty and every reported design with the slab-by-slab calculator. Adversarial searches are described in Sections~\ref{sec:S7} and \ref{sec:S8}. Numerical checks support but do not replace the proofs.
+
+%=====================================================================
+\section{Additional derivations and methodological details}\label{sec:S13}
+
+\textbf{Billing-period scaling.} For $k$ merged cycles the consistent schedule is $B_k(E)=kB(E/k)$ (thresholds and fixed charges scale with $k$). Using the monthly threshold on a quarterly total would move almost all consumption into the top block and is not a meaningful comparison.
+
+\textbf{Observed-data protocol (not yet executed).} Interval versus cumulative energy is determined from documentation and checked by monotonicity within meter; cumulative registers are differenced within day, negative differences (resets) set missing; days with $<90\%$ interval coverage are missing (never zero-filled); daily energy above 100\,kWh is flagged implausible; months with $\ge90\%$ valid days are retained and scaled to the calendar month; households need $\ge10$ retained months in the analysis window; penalties use prorated thresholds (Proposition~\ref{prop:perspective}); inference uses a household-cluster bootstrap stratified by district~\cite{cameron}.
+
+\begin{thebibliography}{9}
+\bibitem{jensen} J.~L.~W.~V. Jensen, Sur les fonctions convexes et les in\'egalit\'es entre les valeurs moyennes, \emph{Acta Math.} 30 (1906) 175--193.
+\bibitem{scarf} H. Scarf, A min-max solution of an inventory problem, in K.~J. Arrow, S. Karlin, H. Scarf (eds.), \emph{Studies in the Mathematical Theory of Inventory and Production}, Stanford University Press, 1958, 201--209.
+\bibitem{lo} A.~W. Lo, Semi-parametric upper bounds for option prices and expected payoffs, \emph{J. Financ. Econ.} 19 (1987) 373--387.
+\bibitem{gallego} G. Gallego, I. Moon, The distribution free newsboy problem: review and extensions, \emph{J. Oper. Res. Soc.} 44 (1993) 825--834.
+\bibitem{bertsimas} D. Bertsimas, I. Popescu, On the relation between option and stock prices: a convex optimization approach, \emph{Oper. Res.} 50 (2002) 358--374.
+\bibitem{samuelson} P.~A. Samuelson, How deviant can you be?, \emph{J. Amer. Statist. Assoc.} 63 (1968) 1522--1525.
+\bibitem{boyd} S. Boyd, L. Vandenberghe, \emph{Convex Optimization}, Cambridge University Press, 2004.
+\bibitem{cameron} A.~C. Cameron, J.~B. Gelbach, D.~L. Miller, Bootstrap-based improvements for inference with clustered errors, \emph{Rev. Econ. Stat.} 90 (2008) 414--427.
+\end{thebibliography}
+\end{document}

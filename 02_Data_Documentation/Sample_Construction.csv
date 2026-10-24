@@ -1,0 +1,6 @@
+step,households,days,household_months,status
+raw files,,,,NOT RUN - observed data not acquired
+after R1-R6,,,,NOT RUN
+months >=90% complete,,,,NOT RUN
+households >=10 months in window,,,,NOT RUN
+synthetic panel (for reference),300,,3600,generated (no cleaning applied; synthetic)

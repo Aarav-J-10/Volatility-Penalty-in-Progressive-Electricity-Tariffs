@@ -1,0 +1,5 @@
+item,value,status
+missing intervals,,NOT RUN - observed data not acquired
+missing days,,NOT RUN
+dropped household-months,,NOT RUN
+synthetic panel missingness,0,by construction
