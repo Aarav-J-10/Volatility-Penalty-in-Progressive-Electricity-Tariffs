@@ -1,0 +1,32 @@
+{
+  "python": "3.13.17 (main, Oct 22 2026, 14:06:04) [GCC 13.3.0]",
+  "platform": "Linux-6.18.44-fc-v153-x86_64-with-glibc2.39",
+  "started": "2026-10-23 20:49:06",
+  "experiments": "{'stress': (20, 15), 'by_type': (3, 7), 'billing': (6, 5), 'threshold_argmax_ok': 300, 'joint': {'n': 12, 'mean': 280.0, 'sd': 160.0, 'best_found_joint_V': 565.096679913946, 'exact_joint_max_Thm3': 565.0966799187809, 'exact_extremal_x': [np.float64(53.726), np.float64(53.726), np.float64(53.726), np.float64(53.726), np.float64(393.137), np.float64(393.137), np.float64(393.137), np.float64(393.137), np.float64(393.137), np.float64(393.137), np.float64(393.137), np.float64(393.137)], 'extremal_nonnegative': True, 'sum_of_componentwise_sharp_bounds': 799.3085596929318, 'componentwise': [220.69219381653056, 423.2863826479693, 155.32998322843196], 'note': 'best_found is a lower bound on the joint maximum (multistart SLSQP, 200 starts)'}, 'all_units': {'tariff': 'all-units slab 5.5 / 6.0 at 150 kWh', 'x': [140.0, 166.0], 'V': -70.0}}",
+  "validation": {
+    "household_V_matches_block_by_block": true,
+    "decomposition_sums": true,
+    "no_violation_U_sd": true,
+    "no_violation_U_mad": true,
+    "no_violation_U_scarf": true,
+    "no_violation_U_bp": true,
+    "no_violation_U_finite": true,
+    "no_violation_U_finite_nonneg": true,
+    "no_violation_U_best": true,
+    "no_violation_U_exact": true,
+    "opt_B_Vmax_recomputed": true,
+    "opt_B_revenue_ratio": true,
+    "opt_C_Vmax_recomputed": true,
+    "opt_C_revenue_ratio": true,
+    "opt_D_Vmax_recomputed": true,
+    "opt_D_revenue_ratio": true,
+    "all_passed": true
+  },
+  "observed": "NOT RUN: no observed data supplied (Dataverse not reachable from build environment)",
+  "pytest": "26 passed in 3.07s",
+  "seconds": 59.6
+}
+
+=== pytest output ===
+..........................                                               [100%]
+26 passed in 3.07s

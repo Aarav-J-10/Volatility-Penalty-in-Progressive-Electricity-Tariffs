@@ -1,0 +1,5 @@
+{
+  "households": 300,
+  "max_W_equals_W_at_mean_and_nMAD/2": 300,
+  "grid_step_kWh": 1.0
+}

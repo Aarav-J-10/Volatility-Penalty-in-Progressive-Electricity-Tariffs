@@ -1,0 +1,19 @@
+{
+  "household_V_matches_block_by_block": true,
+  "decomposition_sums": true,
+  "no_violation_U_sd": true,
+  "no_violation_U_mad": true,
+  "no_violation_U_scarf": true,
+  "no_violation_U_bp": true,
+  "no_violation_U_finite": true,
+  "no_violation_U_finite_nonneg": true,
+  "no_violation_U_best": true,
+  "no_violation_U_exact": true,
+  "opt_B_Vmax_recomputed": true,
+  "opt_B_revenue_ratio": true,
+  "opt_C_Vmax_recomputed": true,
+  "opt_C_revenue_ratio": true,
+  "opt_D_Vmax_recomputed": true,
+  "opt_D_revenue_ratio": true,
+  "all_passed": true
+}

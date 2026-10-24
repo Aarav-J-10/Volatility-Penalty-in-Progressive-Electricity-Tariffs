@@ -1,0 +1,2 @@
+data,households,V_mean,V_median,V_p90,V_max,share_mean_pct,share_median_pct,zero_V
+SYNTHETIC (not empirical),300,108.13,53.365,308.616,807.726,0.609,0.416,44

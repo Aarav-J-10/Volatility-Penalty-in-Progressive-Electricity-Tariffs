@@ -1,0 +1,10 @@
+{
+  "degenerate_unconstrained": {
+    "flat_tariff_dp0": 0.0,
+    "threshold_above_all_demand": 0.0,
+    "threshold_below_all_demand": -5.684341886080802e-14
+  },
+  "reference_revenue_Rs": 4188891.607670376,
+  "reference_bill_at_100kWh": 550.0,
+  "solver": "scipy.optimize.linprog(method='highs') per K grid point"
+}

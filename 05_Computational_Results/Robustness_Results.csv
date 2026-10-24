@@ -1,0 +1,30 @@
+check,metric,value,data
+billing period: monthly,mean V (Rs),108.13,synthetic
+billing period: bimonthly,mean V (Rs),96.37,synthetic
+billing period: quarterly,mean V (Rs),86.76,synthetic
+billing period: annual,mean V (Rs),0.0,synthetic
+billing period: calendar_months_prorated,mean V (Rs),109.3,synthetic
+billing period: calendar_months_UNPRORATED(incorrect),mean V (Rs),113.99,synthetic
+20 synthetic seeds,mean V share % (min/max),0.543/0.723,synthetic
+cluster bootstrap (Monte-Carlo only),mean V share % 95% interval,0.542-0.674,synthetic
+"design: cover_hi=0.6, afford=1.00x ref, rev=0.99-1.01, obj=mean",K / Vmax,152 / 194.8,synthetic
+"design: cover_hi=0.6, afford=1.00x ref, rev=0.99-1.01, obj=minimax",K / Vmax,152 / 194.8,synthetic
+"design: cover_hi=0.6, afford=1.00x ref, rev=0.99-1.01, obj=robust",K / Vmax,152 / 194.8,synthetic
+"design: cover_hi=0.6, afford=1.00x ref, rev=0.95-1.05, obj=mean",K / Vmax,152 / 194.4,synthetic
+"design: cover_hi=0.6, afford=1.00x ref, rev=0.95-1.05, obj=minimax",K / Vmax,152 / 194.4,synthetic
+"design: cover_hi=0.6, afford=1.00x ref, rev=0.95-1.05, obj=robust",K / Vmax,152 / 194.4,synthetic
+"design: cover_hi=0.6, afford=none, rev=0.99-1.01, obj=mean",K / Vmax,152 / 194.4,synthetic
+"design: cover_hi=0.6, afford=none, rev=0.99-1.01, obj=minimax",K / Vmax,152 / 194.4,synthetic
+"design: cover_hi=0.6, afford=none, rev=0.99-1.01, obj=robust",K / Vmax,152 / 194.4,synthetic
+"design: cover_hi=0.5, afford=1.00x ref, rev=0.99-1.01, obj=mean",K / Vmax,172 / 280.2,synthetic
+"design: cover_hi=0.5, afford=1.00x ref, rev=0.99-1.01, obj=minimax",K / Vmax,178 / 271.8,synthetic
+"design: cover_hi=0.5, afford=1.00x ref, rev=0.99-1.01, obj=robust",K / Vmax,178 / 271.8,synthetic
+"design: cover_hi=0.4, afford=1.00x ref, rev=0.99-1.01, obj=mean",K / Vmax,198 / 383.1,synthetic
+"design: cover_hi=0.4, afford=1.00x ref, rev=0.99-1.01, obj=minimax",K / Vmax,198 / 383.1,synthetic
+"design: cover_hi=0.4, afford=1.00x ref, rev=0.99-1.01, obj=robust",K / Vmax,198 / 383.1,synthetic
+"design: cover_hi=0.3, afford=1.00x ref, rev=0.99-1.01, obj=mean",K / Vmax,230 / 603.4,synthetic
+"design: cover_hi=0.3, afford=1.00x ref, rev=0.99-1.01, obj=minimax",K / Vmax,230 / 603.4,synthetic
+"design: cover_hi=0.3, afford=1.00x ref, rev=0.99-1.01, obj=robust",K / Vmax,230 / 603.4,synthetic
+"design: cover_hi=0.3, afford=none, rev=0.99-1.01, obj=mean",K / Vmax,348 / 463.1,synthetic
+"design: cover_hi=0.3, afford=none, rev=0.99-1.01, obj=minimax",K / Vmax,244 / 299.0,synthetic
+"design: cover_hi=0.3, afford=none, rev=0.99-1.01, obj=robust",K / Vmax,244 / 299.0,synthetic

@@ -1,0 +1,29 @@
+{
+  "n": 12,
+  "mean": 280.0,
+  "sd": 160.0,
+  "best_found_joint_V": 565.096679913946,
+  "exact_joint_max_Thm3": 565.0966799187809,
+  "exact_extremal_x": [
+    53.726,
+    53.726,
+    53.726,
+    53.726,
+    393.137,
+    393.137,
+    393.137,
+    393.137,
+    393.137,
+    393.137,
+    393.137,
+    393.137
+  ],
+  "extremal_nonnegative": true,
+  "sum_of_componentwise_sharp_bounds": 799.3085596929318,
+  "componentwise": [
+    220.69219381653056,
+    423.2863826479693,
+    155.32998322843196
+  ],
+  "note": "best_found is a lower bound on the joint maximum (multistart SLSQP, 200 starts)"
+}
